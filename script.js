@@ -31,7 +31,7 @@ const airlines = {
   "AZ": "it",
   "LO": "pl",
   "LH": "de",
-  "SK": "se",
+ "SK": ["se", "no", "dk"],
   "LX": "ch",
   "TP": "pt",
   "RO": "ro",
@@ -119,10 +119,22 @@ function startGame() {
           : country.parentNode.id;
 
       const correct =
-        airlines[currentAirline];
+  airlines[currentAirline];
 
-      const isCorrect =
-        clicked.startsWith(correct);
+let isCorrect = false;
+
+if(Array.isArray(correct)) {
+
+  isCorrect =
+    correct.some(code =>
+      clicked.startsWith(code)
+    );
+
+} else {
+
+  isCorrect =
+    clicked.startsWith(correct);
+}
 
       if(isCorrect) {
         activeHintIntervals.forEach(interval => {
@@ -191,7 +203,17 @@ hintMode = false;
         ? c.id
         : c.parentNode.id;
 
-    if(id.startsWith(correct)) {
+    if(
+
+  Array.isArray(correct)
+
+    ? correct.some(code =>
+        id.startsWith(code)
+      )
+
+    : id.startsWith(correct)
+
+) {
 
       let visible = false;
 
