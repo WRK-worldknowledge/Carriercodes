@@ -1,20 +1,32 @@
 const airlines = {
 
-"KL": "nl",
-"HV": "nl",
-"AF": "fr",
-"LH": "de",
-"BA": "gb",
-"IB": "es",
-"TP": "pt",
-"LX": "ch",
-"OS": "at",
-"AY": "fi",
-"FR": "ie",
-"EI": "ie",
-"AZ": "it",
-"TK": "tr",
-"AT": "ma"
+  "A3": "gr",   // Aegean Airlines
+  "EI": "ie",   // Aer Lingus
+  "SU": "ru",   // Aeroflot
+  "BT": "lv",   // Air Baltic
+  "AF": "fr",   // Air France
+  "KM": "mt",   // Air Malta
+  "JU": "rs",   // Air Serbia
+  "8R": "fr",   // Amelia
+  "OS": "at",   // Austrian
+  "BA": "gb",   // British Airways
+  "SN": "be",   // Brussels Airlines
+  "CND": "nl",  // Corendon Dutch
+  "OU": "hr",   // Croatia Airlines
+  "OK": "cz",   // Czech Airlines
+  "AY": "fi",   // Finnair
+  "IB": "es",   // Iberia
+  "FI": "is",   // Icelandair
+  "AZ": "it",   // ITA Airways
+  "LO": "pl",   // LOT
+  "LH": "de",   // Lufthansa
+  "SK": "se",   // SAS
+  "LX": "ch",   // Swiss
+  "TP": "pt",   // TAP
+  "RO": "ro",   // Tarom
+  "HV": "nl",   // Transavia
+  "OR": "nl",   // TUI NL
+  "KL": "nl"    // KLM
 
 };
 
