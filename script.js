@@ -11,33 +11,33 @@ fetch('Europe_map.svg')
 
 const airlines = {
 
-  "A3": "gr",   // Aegean Airlines
-  "EI": "ie",   // Aer Lingus
-  "SU": "ru",   // Aeroflot
-  "BT": "lv",   // Air Baltic
-  "AF": "fr",   // Air France
-  "KM": "mt",   // Air Malta
-  "JU": "rs",   // Air Serbia
-  "8R": "fr",   // Amelia
-  "OS": "at",   // Austrian
-  "BA": "gb",   // British Airways
-  "SN": "be",   // Brussels Airlines
-  "CND": "nl",  // Corendon Dutch
-  "OU": "hr",   // Croatia Airlines
-  "OK": "cz",   // Czech Airlines
-  "AY": "fi",   // Finnair
-  "IB": "es",   // Iberia
-  "FI": "is",   // Icelandair
-  "AZ": "it",   // ITA Airways
-  "LO": "pl",   // LOT
-  "LH": "de",   // Lufthansa
-  "SK": "se",   // SAS
-  "LX": "ch",   // Swiss
-  "TP": "pt",   // TAP
-  "RO": "ro",   // Tarom
-  "HV": "nl",   // Transavia
-  "OR": "nl",   // TUI NL
-  "KL": "nl"    // KLM
+  "A3": "gr",
+  "EI": "ie",
+  "SU": "ru",
+  "BT": "lv",
+  "AF": "fr",
+  "KM": "mt",
+  "JU": "rs",
+  "8R": "fr",
+  "OS": "at",
+  "BA": "gb",
+  "SN": "be",
+  "CND": "nl",
+  "OU": "hr",
+  "OK": "cz",
+  "AY": "fi",
+  "IB": "es",
+  "FI": "is",
+  "AZ": "it",
+  "LO": "pl",
+  "LH": "de",
+  "SK": "se",
+  "LX": "ch",
+  "TP": "pt",
+  "RO": "ro",
+  "HV": "nl",
+  "OR": "nl",
+  "KL": "nl"
 
 };
 
@@ -47,11 +47,13 @@ let currentAirline = "";
 
 let mistakes = 0;
 
+let hintMode = false;
+
 const label =
   document.getElementById("floating-label");
 
 let remainingAirlines =
-  Object.keys(airlines);
+  [...Object.keys(airlines)];
 
 function nextQuestion() {
 
@@ -67,6 +69,8 @@ function nextQuestion() {
   }
 
   mistakes = 0;
+
+  hintMode = false;
 
   const randomIndex =
     Math.floor(Math.random() * remainingAirlines.length);
@@ -116,22 +120,26 @@ function startGame() {
           ? country.id
           : country.parentNode.id;
 
-      console.log(clicked);
-
       const correct =
         airlines[currentAirline];
 
-      if(clicked.startsWith(correct)) {
+      const isCorrect =
+        clicked.startsWith(correct);
+
+      if(isCorrect) {
 
         country.style.fill = "white";
 
-        if(mistakes === 0) {
+        if(!hintMode) {
 
-          score += 1;
+          if(mistakes === 0) {
 
-        } else if(mistakes === 1) {
+            score += 1;
 
-          score += 0.5;
+          } else if(mistakes === 1) {
+
+            score += 0.5;
+          }
         }
 
         document.getElementById("score")
@@ -144,9 +152,11 @@ function startGame() {
 
           nextQuestion();
 
-        }, 600);
+        }, 700);
 
       } else {
+
+        if(hintMode) return;
 
         mistakes++;
 
@@ -160,6 +170,8 @@ function startGame() {
 
         if(mistakes >= 2) {
 
+          hintMode = true;
+
           const allCountries =
             svgDoc.querySelectorAll("[id]");
 
@@ -172,36 +184,22 @@ function startGame() {
 
             if(id.startsWith(correct)) {
 
-              let flashes = 0;
+              let visible = false;
 
-              const flash =
-                setInterval(() => {
+              setInterval(() => {
 
-                  c.style.fill =
-                    flashes % 2 === 0
-                      ? "orange"
-                      : "green";
+                c.style.fill =
+                  visible ? "green" : "orange";
 
-                  flashes++;
+                visible = !visible;
 
-                  if(flashes > 5) {
-
-                    clearInterval(flash);
-
-                    c.style.fill = "green";
-                  }
-
-                }, 250);
+              }, 400);
             }
 
           });
 
-          setTimeout(() => {
-
-            nextQuestion();
-
-          }, 1600);
         }
+
       }
 
     });
