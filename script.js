@@ -80,8 +80,6 @@ function nextQuestion() {
   currentAirline =
     remainingAirlines[randomIndex];
 
-  remainingAirlines.splice(randomIndex, 1);
-
   label.innerHTML =
     `✈️ ${currentAirline}`;
 
@@ -159,11 +157,14 @@ hintMode = false;
 
         setTimeout(() => {
 
-          country.style.fill = "green";
+  country.style.fill = "green";
 
-          nextQuestion();
+  remainingAirlines =
+    remainingAirlines.filter(a => a !== currentAirline);
 
-        }, 700);
+  nextQuestion();
+
+}, 700);
 
       } else {
 
