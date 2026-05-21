@@ -49,6 +49,8 @@ let mistakes = 0;
 
 let hintMode = false;
 
+let activeHintIntervals = [];
+
 const label =
   document.getElementById("floating-label");
 
@@ -127,6 +129,15 @@ function startGame() {
         clicked.startsWith(correct);
 
       if(isCorrect) {
+        activeHintIntervals.forEach(interval => {
+
+  clearInterval(interval);
+
+});
+
+activeHintIntervals = [];
+
+hintMode = false;
 
         country.style.fill = "white";
 
@@ -168,37 +179,40 @@ function startGame() {
 
         }, 500);
 
-        if(mistakes >= 2) {
+       if(mistakes >= 2) {
 
-          hintMode = true;
+  hintMode = true;
 
-          const allCountries =
-            svgDoc.querySelectorAll("[id]");
+  const allCountries =
+    svgDoc.querySelectorAll("[id]");
 
-          allCountries.forEach(c => {
+  allCountries.forEach(c => {
 
-            const id =
-              c.parentNode.id.startsWith("svg")
-                ? c.id
-                : c.parentNode.id;
+    const id =
+      c.parentNode.id.startsWith("svg")
+        ? c.id
+        : c.parentNode.id;
 
-            if(id.startsWith(correct)) {
+    if(id.startsWith(correct)) {
 
-              let visible = false;
+      let visible = false;
 
-              setInterval(() => {
+      const interval =
+        setInterval(() => {
 
-                c.style.fill =
-                  visible ? "green" : "orange";
+          c.style.fill =
+            visible ? "green" : "orange";
 
-                visible = !visible;
+          visible = !visible;
 
-              }, 400);
-            }
+        }, 400);
 
-          });
+      activeHintIntervals.push(interval);
+    }
 
-        }
+  });
+
+}
 
       }
 
