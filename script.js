@@ -1,3 +1,14 @@
+fetch('Europe_map.svg')
+  .then(response => response.text())
+  .then(svg => {
+
+    document.getElementById("map-container")
+      .innerHTML = svg;
+
+    startGame();
+
+});
+
 const airlines = {
 
   "A3": "gr",   // Aegean Airlines
@@ -58,68 +69,60 @@ label.style.top =
 (e.pageY + 20) + "px";
 });
 
-window.addEventListener("load", () => {
+function startGame() {
 
-const svgObject =
-document.getElementById("svgMap");
+  const svgDoc = document.querySelector("svg");
 
-svgObject.addEventListener("load", () => {
+  const countries =
+    svgDoc.querySelectorAll("[id]");
 
-const svgDoc =
-svgObject.contentDocument;
+  countries.forEach(country => {
 
-const countries =
-svgDoc.querySelectorAll("[id]");
+    country.style.cursor = "pointer";
 
-countries.forEach(country => {
+    country.style.transition =
+      "fill 0.2s";
 
-country.style.cursor = "pointer";
+    country.addEventListener("click", () => {
 
-country.style.transition =
-"fill 0.2s";
+      const clicked =
+        country.id;
 
-country.addEventListener("click", () => {
+      const correct =
+        airlines[currentAirline];
 
-const clicked =
-country.id;
+      if(clicked === correct) {
 
-const correct =
-airlines[currentAirline];
+        country.style.fill = "white";
 
-if(clicked === correct) {
+        score++;
 
-country.style.fill = "white";
+        document.getElementById("score")
+          .innerHTML = `Score: ${score}`;
 
-score++;
+        setTimeout(() => {
 
-document.getElementById("score")
-.innerHTML = `Score: ${score}`;
+          country.style.fill = "green";
 
-setTimeout(() => {
+          nextQuestion();
 
-country.style.fill = "green";
+        }, 500);
 
-nextQuestion();
+      } else {
 
-}, 500);
+        country.style.fill = "red";
 
-} else {
+        setTimeout(() => {
 
-country.style.fill = "red";
+          country.style.fill = "green";
 
-setTimeout(() => {
+        }, 500);
+      }
 
-country.style.fill = "green";
+    });
 
-}, 500);
+  });
+
+  nextQuestion();
+
 }
-
-});
-
-});
-
-nextQuestion();
-
-});
-
-});
