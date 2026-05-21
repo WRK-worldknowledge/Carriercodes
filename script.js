@@ -55,7 +55,8 @@ const label =
   document.getElementById("floating-label");
 
 let remainingAirlines =
-  [...Object.keys(airlines)];
+  [...Object.keys(airlines)]
+    .sort(() => Math.random() - 0.5);
 
 function nextQuestion() {
 
@@ -74,11 +75,8 @@ function nextQuestion() {
 
   hintMode = false;
 
-  const randomIndex =
-    Math.floor(Math.random() * remainingAirlines.length);
-
   currentAirline =
-    remainingAirlines[randomIndex];
+  remainingAirlines[0];
 
   label.innerHTML =
     `✈️ ${currentAirline}`;
@@ -159,8 +157,7 @@ hintMode = false;
 
   country.style.fill = "green";
 
-  remainingAirlines =
-    remainingAirlines.filter(a => a !== currentAirline);
+ remainingAirlines.shift();
 
   nextQuestion();
 
