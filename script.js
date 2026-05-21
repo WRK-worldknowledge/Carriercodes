@@ -87,6 +87,7 @@ function startGame() {
 
       const clicked =
         country.id;
+      console.log(clicked);
 
       const correct =
         airlines[currentAirline];
