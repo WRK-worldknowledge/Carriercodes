@@ -21,9 +21,8 @@ body {
 
   position: relative;
 
-  width: 1100px;
-
-  height: 760px;
+ width: 980px;
+height: 690px;
 
   background: #b7dce8;
 
@@ -101,7 +100,7 @@ body {
 
   align-items: center;
 
-  padding: 20px;
+  padding: 8px;
 
   box-sizing: border-box;
 
@@ -117,9 +116,8 @@ body {
 
   transform: translate(-50%, -50%);
 
-  width: 95vw;
-
-  height: 95vh;
+  width: 108%;
+height: 108%;
 }
 
 #floating-label {
