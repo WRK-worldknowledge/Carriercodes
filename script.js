@@ -86,7 +86,9 @@ function startGame() {
     country.addEventListener("click", () => {
 
       const clicked =
-  country.parentNode.id;
+  country.parentNode.id.startsWith("svg")
+    ? country.id
+    : country.parentNode.id;
       console.log(clicked);
 
       const correct =
