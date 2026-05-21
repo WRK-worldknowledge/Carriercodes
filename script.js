@@ -77,16 +77,6 @@ function nextQuestion() {
       `Remaining: ${remainingAirlines.length}`;
 }
 
-const keys =
-Object.keys(airlines);
-
-currentAirline =
-keys[Math.floor(Math.random() * keys.length)];
-
-label.innerHTML =
-`✈️ ${currentAirline}`;
-}
-
 document.addEventListener("mousemove", (e) => {
 
 label.style.left =
