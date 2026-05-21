@@ -5,13 +5,9 @@ fetch('Europe_map.svg')
     document.getElementById("map-container")
       .innerHTML = svg;
 
-    document.querySelector("svg")
-      .setAttribute("id", "svgMap");
-
     startGame();
 
 });
-
 const airlines = {
 
   "A3": "gr",   // Aegean Airlines
