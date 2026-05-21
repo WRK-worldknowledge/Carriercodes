@@ -83,19 +83,20 @@ body {
   font-weight: bold;
 }
 
-#map-container {
-
-  position: absolute;
-
-  top: 80px;
-
-  left: 0;
+#map-container svg {
 
   width: 100%;
 
-  height: calc(100% - 80px);
+  height: 100%;
 
-  display: flex;
+  display: block;
+}
+svg {
+
+  width: 100%;
+
+  height: 100%;
+}
 
   justify-content: center;
 
