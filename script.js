@@ -8,6 +8,7 @@ fetch('Europe_map.svg')
     startGame();
 
 });
+
 const airlines = {
 
   "A3": "gr",   // Aegean Airlines
@@ -47,7 +48,7 @@ let currentAirline = "";
 let mistakes = 0;
 
 const label =
-document.getElementById("floating-label");
+  document.getElementById("floating-label");
 
 let remainingAirlines =
   Object.keys(airlines);
@@ -58,6 +59,9 @@ function nextQuestion() {
 
     label.innerHTML =
       `🎉 Finished! Final Score: ${score}`;
+
+    document.getElementById("remaining")
+      .innerHTML = `Remaining: 0`;
 
     return;
   }
@@ -79,19 +83,21 @@ function nextQuestion() {
     .innerHTML =
       `Remaining: ${remainingAirlines.length}`;
 }
- 
+
 document.addEventListener("mousemove", (e) => {
 
-label.style.left =
-(e.pageX + 20) + "px";
+  label.style.left =
+    (e.pageX + 20) + "px";
 
-label.style.top =
-(e.pageY + 20) + "px";
+  label.style.top =
+    (e.pageY + 20) + "px";
+
 });
 
 function startGame() {
 
-  const svgDoc = document.querySelector("svg");
+  const svgDoc =
+    document.querySelector("svg");
 
   const countries =
     svgDoc.querySelectorAll("[id]");
@@ -106,9 +112,10 @@ function startGame() {
     country.addEventListener("click", () => {
 
       const clicked =
-  country.parentNode.id.startsWith("svg")
-    ? country.id
-    : country.parentNode.id;
+        country.parentNode.id.startsWith("svg")
+          ? country.id
+          : country.parentNode.id;
+
       console.log(clicked);
 
       const correct =
@@ -116,82 +123,86 @@ function startGame() {
 
       if(clicked.startsWith(correct)) {
 
-  country.style.fill = "white";
+        country.style.fill = "white";
 
-  if(mistakes === 0) {
+        if(mistakes === 0) {
 
-    score += 1;
+          score += 1;
 
-  } else if(mistakes === 1) {
+        } else if(mistakes === 1) {
 
-    score += 0.5;
-  }
+          score += 0.5;
+        }
 
-  document.getElementById("score")
-    .innerHTML = `Score: ${score}`;
+        document.getElementById("score")
+          .innerHTML =
+            `Score: ${score}`;
 
-  setTimeout(() => {
+        setTimeout(() => {
 
-    country.style.fill = "green";
+          country.style.fill = "green";
 
-    nextQuestion();
+          nextQuestion();
 
-  }, 600);
+        }, 600);
 
-} else {
+      } else {
 
-  mistakes++;
+        mistakes++;
 
-  country.style.fill = "red";
+        country.style.fill = "red";
 
-  setTimeout(() => {
+        setTimeout(() => {
 
-    country.style.fill = "green";
+          country.style.fill = "green";
 
-  }, 500);
+        }, 500);
 
-  if(mistakes >= 2) {
+        if(mistakes >= 2) {
 
-    const allCountries =
-      svgDoc.querySelectorAll("[id]");
+          const allCountries =
+            svgDoc.querySelectorAll("[id]");
 
-    allCountries.forEach(c => {
+          allCountries.forEach(c => {
 
-      const id =
-        c.parentNode.id.startsWith("svg")
-          ? c.id
-          : c.parentNode.id;
+            const id =
+              c.parentNode.id.startsWith("svg")
+                ? c.id
+                : c.parentNode.id;
 
-      if(id.startsWith(correct)) {
+            if(id.startsWith(correct)) {
 
-        let flashes = 0;
+              let flashes = 0;
 
-        const flash =
-          setInterval(() => {
+              const flash =
+                setInterval(() => {
 
-            c.style.fill =
-              flashes % 2 === 0
-                ? "orange"
-                : "green";
+                  c.style.fill =
+                    flashes % 2 === 0
+                      ? "orange"
+                      : "green";
 
-            flashes++;
+                  flashes++;
 
-            if(flashes > 5) {
+                  if(flashes > 5) {
 
-              clearInterval(flash);
+                    clearInterval(flash);
 
-              c.style.fill = "green";
+                    c.style.fill = "green";
+                  }
 
-                            nextQuestion();
+                }, 250);
             }
 
-          }, 250);
+          });
+
+          setTimeout(() => {
+
+            nextQuestion();
+
+          }, 1600);
+        }
       }
-
-    });
-
-  }
-}
 
     });
 
