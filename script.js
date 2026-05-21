@@ -86,7 +86,7 @@ function startGame() {
     country.addEventListener("click", () => {
 
       const clicked =
-        country.id;
+  country.parentNode.id;
       console.log(clicked);
 
       const correct =
