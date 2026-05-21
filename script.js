@@ -48,7 +48,34 @@ let currentAirline = "";
 const label =
 document.getElementById("floating-label");
 
+let remainingAirlines =
+  Object.keys(airlines);
+
 function nextQuestion() {
+
+  if(remainingAirlines.length === 0) {
+
+    label.innerHTML =
+      "🎉 Finished!";
+
+    return;
+  }
+
+  const randomIndex =
+    Math.floor(Math.random() * remainingAirlines.length);
+
+  currentAirline =
+    remainingAirlines[randomIndex];
+
+  remainingAirlines.splice(randomIndex, 1);
+
+  label.innerHTML =
+    `✈️ ${currentAirline}`;
+
+  document.getElementById("remaining")
+    .innerHTML =
+      `Remaining: ${remainingAirlines.length}`;
+}
 
 const keys =
 Object.keys(airlines);
