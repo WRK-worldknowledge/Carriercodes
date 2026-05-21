@@ -44,8 +44,11 @@ let score = 0;
 
 let currentAirline = "";
 
+let mistakes = 0;
+
 const label =
 document.getElementById("floating-label");
+
 let remainingAirlines =
   Object.keys(airlines);
 
@@ -54,10 +57,12 @@ function nextQuestion() {
   if(remainingAirlines.length === 0) {
 
     label.innerHTML =
-      "🎉 Finished!";
+      `🎉 Finished! Final Score: ${score}`;
 
     return;
   }
+
+  mistakes = 0;
 
   const randomIndex =
     Math.floor(Math.random() * remainingAirlines.length);
@@ -69,8 +74,12 @@ function nextQuestion() {
 
   label.innerHTML =
     `✈️ ${currentAirline}`;
-}
 
+  document.getElementById("remaining")
+    .innerHTML =
+      `Remaining: ${remainingAirlines.length}`;
+}
+ 
 document.addEventListener("mousemove", (e) => {
 
 label.style.left =
@@ -107,31 +116,82 @@ function startGame() {
 
       if(clicked.startsWith(correct)) {
 
-        country.style.fill = "white";
+  country.style.fill = "white";
 
-        score++;
+  if(mistakes === 0) {
 
-        document.getElementById("score")
-          .innerHTML = `Score: ${score}`;
+    score += 1;
 
-        setTimeout(() => {
+  } else if(mistakes === 1) {
 
-          country.style.fill = "green";
+    score += 0.5;
+  }
 
-          nextQuestion();
+  document.getElementById("score")
+    .innerHTML = `Score: ${score}`;
 
-        }, 500);
+  setTimeout(() => {
 
-      } else {
+    country.style.fill = "green";
 
-        country.style.fill = "red";
+    nextQuestion();
 
-        setTimeout(() => {
+  }, 600);
 
-          country.style.fill = "green";
+} else {
 
-        }, 500);
+  mistakes++;
+
+  country.style.fill = "red";
+
+  setTimeout(() => {
+
+    country.style.fill = "green";
+
+  }, 500);
+
+  if(mistakes >= 2) {
+
+    const allCountries =
+      svgDoc.querySelectorAll("[id]");
+
+    allCountries.forEach(c => {
+
+      const id =
+        c.parentNode.id.startsWith("svg")
+          ? c.id
+          : c.parentNode.id;
+
+      if(id.startsWith(correct)) {
+
+        let flashes = 0;
+
+        const flash =
+          setInterval(() => {
+
+            c.style.fill =
+              flashes % 2 === 0
+                ? "orange"
+                : "green";
+
+            flashes++;
+
+            if(flashes > 5) {
+
+              clearInterval(flash);
+
+              c.style.fill = "green";
+
+                            nextQuestion();
+            }
+
+          }, 250);
       }
+
+    });
+
+  }
+}
 
     });
 
