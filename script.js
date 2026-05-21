@@ -92,7 +92,7 @@ function startGame() {
       const correct =
         airlines[currentAirline];
 
-      if(clicked === correct) {
+      if(clicked.startsWith(correct)) {
 
         country.style.fill = "white";
 
