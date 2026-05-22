@@ -31,7 +31,9 @@ const airlines = {
   "AZ": "it",
   "LO": "pl",
   "LH": "de",
- "SK": ["se", "no", "dk"],
+
+  "SK": ["se", "no", "dk"],
+
   "LX": "ch",
   "TP": "pt",
   "RO": "ro",
@@ -48,6 +50,8 @@ let currentAirline = "";
 let mistakes = 0;
 
 let hintMode = false;
+
+let locked = false;
 
 let activeHintIntervals = [];
 
@@ -66,7 +70,8 @@ function nextQuestion() {
       `🎉 Finished! Final Score: ${score}`;
 
     document.getElementById("remaining")
-      .innerHTML = `Remaining: 0`;
+      .innerHTML =
+        `Remaining: 0`;
 
     return;
   }
@@ -76,7 +81,7 @@ function nextQuestion() {
   hintMode = false;
 
   currentAirline =
-  remainingAirlines[0];
+    remainingAirlines[0];
 
   label.innerHTML =
     `✈️ ${currentAirline}`;
@@ -113,39 +118,49 @@ function startGame() {
 
     country.addEventListener("click", () => {
 
+      if(locked) return;
+
       const clicked =
         country.parentNode.id.startsWith("svg")
           ? country.id
           : country.parentNode.id;
 
       const correct =
-  airlines[currentAirline];
+        airlines[currentAirline];
 
-let isCorrect = false;
+      let isCorrect = false;
 
-if(Array.isArray(correct)) {
+      if(Array.isArray(correct)) {
 
-  isCorrect =
-    correct.some(code =>
-      clicked.startsWith(code)
-    );
+        isCorrect =
+          correct.some(code =>
+            clicked.startsWith(code)
+          );
 
-} else {
+      } else {
 
-  isCorrect =
-    clicked.startsWith(correct);
-}
+        isCorrect =
+          clicked.startsWith(correct);
+      }
 
       if(isCorrect) {
+
+        if(hintMode) {
+
+          locked = false;
+        }
+
         activeHintIntervals.forEach(interval => {
 
-  clearInterval(interval);
+          clearInterval(interval);
 
-});
+        });
 
-activeHintIntervals = [];
+        activeHintIntervals = [];
 
-hintMode = false;
+        hintMode = false;
+
+        locked = true;
 
         country.style.fill = "white";
 
@@ -167,13 +182,15 @@ hintMode = false;
 
         setTimeout(() => {
 
-  country.style.fill = "green";
+          country.style.fill = "green";
 
- remainingAirlines.shift();
+          remainingAirlines.shift();
 
-  nextQuestion();
+          nextQuestion();
 
-}, 700);
+          locked = false;
+
+        }, 700);
 
       } else {
 
@@ -189,50 +206,53 @@ hintMode = false;
 
         }, 500);
 
-       if(mistakes >= 2) {
+        if(mistakes >= 2) {
 
-  hintMode = true;
+          locked = true;
 
-  const allCountries =
-    svgDoc.querySelectorAll("[id]");
+          hintMode = true;
 
-  allCountries.forEach(c => {
+          const allCountries =
+            svgDoc.querySelectorAll("[id]");
 
-    const id =
-      c.parentNode.id.startsWith("svg")
-        ? c.id
-        : c.parentNode.id;
+          allCountries.forEach(c => {
 
-    if(
+            const id =
+              c.parentNode.id.startsWith("svg")
+                ? c.id
+                : c.parentNode.id;
 
-  Array.isArray(correct)
+            const matches = Array.isArray(correct)
 
-    ? correct.some(code =>
-        id.startsWith(code)
-      )
+              ? correct.some(code =>
+                  id.startsWith(code)
+                )
 
-    : id.startsWith(correct)
+              : id.startsWith(correct);
 
-) {
+            if(matches) {
 
-      let visible = false;
+              let visible = false;
 
-      const interval =
-        setInterval(() => {
+              const interval =
+                setInterval(() => {
 
-          c.style.fill =
-            visible ? "green" : "orange";
+                  c.style.fill =
+                    visible
+                      ? "green"
+                      : "orange";
 
-          visible = !visible;
+                  visible = !visible;
 
-        }, 400);
+                }, 400);
 
-      activeHintIntervals.push(interval);
-    }
+              activeHintIntervals.push(interval);
+            }
 
-  });
+          });
 
-}
+          locked = false;
+        }
 
       }
 
