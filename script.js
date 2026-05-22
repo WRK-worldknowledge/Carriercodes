@@ -162,7 +162,30 @@ function startGame() {
 
         locked = true;
 
-        country.style.fill = "white";
+        const allCountries =
+  svgDoc.querySelectorAll("[id]");
+
+allCountries.forEach(c => {
+
+  const id =
+    c.parentNode.id.startsWith("svg")
+      ? c.id
+      : c.parentNode.id;
+
+  const matches = Array.isArray(correct)
+
+    ? correct.some(code =>
+        id.startsWith(code)
+      )
+
+    : id.startsWith(correct);
+
+  if(matches) {
+
+    c.style.fill = "white";
+  }
+
+});
 
         if(!hintMode) {
 
@@ -182,7 +205,30 @@ function startGame() {
 
         setTimeout(() => {
 
-          country.style.fill = "green";
+          const allCountries =
+  svgDoc.querySelectorAll("[id]");
+
+allCountries.forEach(c => {
+
+  const id =
+    c.parentNode.id.startsWith("svg")
+      ? c.id
+      : c.parentNode.id;
+
+  const matches = Array.isArray(correct)
+
+    ? correct.some(code =>
+        id.startsWith(code)
+      )
+
+    : id.startsWith(correct);
+
+  if(matches) {
+
+    c.style.fill = "green";
+  }
+
+});
 
           remainingAirlines.shift();
 
