@@ -113,9 +113,9 @@ body {
 }
 #map-container svg {
 
-  width: 118%;
+  height: 120%;
 
-  height: 118%;
+  width: auto;
 }
 #floating-label {
 
