@@ -113,17 +113,11 @@ body {
 }
 #svgMap {
 
-  position: absolute;
+  width: 118%;
 
-  top: 52%;
+  height: 118%;
 
-  left: 52%;
-
-  transform: translate(-50%, -50%);
-
-  width: 122%;
-
-  height: 122%;
+  object-fit: contain;
 }
 #floating-label {
 
