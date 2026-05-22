@@ -60,9 +60,12 @@ font-weight: bold;
 
   align-items: center;
 }
+#map-container {
+  zoom: 1.08;
+}
 #svgMap { 
-width: 130%; 
-height: 130%; 
+width: 120%; 
+height: 120%; 
   background: #bae1f7;
 border-radius: 10px;
 object-fit: contain; 
