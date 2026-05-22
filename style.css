@@ -89,41 +89,42 @@ body {
 
   position: absolute;
 
-  top: 80px;
+  top: 110px;
 
-  left: 0;
+  left: 50%;
 
-  width: 100%;
+  transform: translateX(-50%);
 
-  height: calc(100% - 80px);
+  width: 78%;
+
+  height: 74%;
+
+  background: #b7dce8;
+
+  border-radius: 14px;
+
+  overflow: hidden;
 
   display: flex;
 
   justify-content: center;
 
   align-items: center;
-
-  padding: 8px;
-
-  box-sizing: border-box;
-
-  overflow: visible;
 }
 #svgMap {
 
   position: absolute;
 
-  top: 54%;
+  top: 52%;
 
   left: 52%;
 
   transform: translate(-50%, -50%);
 
-  width: 108%;
+  width: 122%;
 
-  height: 108%;
+  height: 122%;
 }
-
 #floating-label {
 
   position: absolute;
