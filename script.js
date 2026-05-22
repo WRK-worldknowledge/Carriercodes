@@ -6,7 +6,8 @@ fetch('Europe_map.svg')
       .innerHTML = svg;
 
     startGame();
-
+document.querySelector("svg")
+  .style.background = "#7fc8ed";
 });
 
 const airlines = {
