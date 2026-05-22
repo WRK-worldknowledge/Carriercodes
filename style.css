@@ -111,13 +111,11 @@ body {
 
   align-items: center;
 }
-#svgMap {
+#map-container svg {
 
   width: 118%;
 
   height: 118%;
-
-  object-fit: contain;
 }
 #floating-label {
 
