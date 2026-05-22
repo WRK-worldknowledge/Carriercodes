@@ -2,7 +2,7 @@ body {
 
   margin: 0;
 
-  background: #7fc8ed;
+  background: white;
 
   font-family: Arial, sans-serif;
 
@@ -10,9 +10,9 @@ body {
 
   justify-content: center;
 
-  align-items: center;
+  align-items: flex-start;
 
-  height: 100vh;
+  min-height: 100vh;
 
   overflow: hidden;
 }
@@ -21,8 +21,11 @@ body {
 
   position: relative;
 
- width: 980px;
-height: 690px;
+  width: 1180px;
+
+  height: 92vh;
+
+  margin-top: 35px;
 
   background: #b7dce8;
 
@@ -30,7 +33,7 @@ height: 690px;
 
   overflow: hidden;
 
-  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
 }
 
 #topbar {
@@ -110,14 +113,15 @@ height: 690px;
 
   position: absolute;
 
-  top: 52%;
+  top: 54%;
 
-  left: 50%;
+  left: 52%;
 
   transform: translate(-50%, -50%);
 
   width: 108%;
-height: 108%;
+
+  height: 108%;
 }
 
 #floating-label {
