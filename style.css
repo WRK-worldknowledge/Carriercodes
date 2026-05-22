@@ -81,3 +81,12 @@ z-index: 999; pointer-events: none;
 #svgMap path { 
 pointer-events: all; 
 }
+#map-container svg {
+
+  background: #7fc8ed;
+}
+
+#map-container svg path {
+
+  stroke: white;
+}
