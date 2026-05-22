@@ -40,17 +40,17 @@ font-weight: bold;
 
   transform: translateX(-50%);
 
-  width: 980px;
+  width: fit-content;
 
-  height: 620px;
+  height: fit-content;
+
+  padding: 12px;
 
   background: white;
 
   border-radius: 18px;
 
-  padding: 12px;
-
-  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
 
   overflow: hidden;
 
