@@ -63,7 +63,7 @@ font-weight: bold;
 #svgMap { 
 width: 118%; 
 height: 118%; 
-  background: #dde4e7;
+  background: #bae1f7;
 border-radius: 10px;
 object-fit: contain; 
 } 
@@ -83,7 +83,7 @@ pointer-events: all;
 }
 #map-container svg {
 
-  background: #dde4e7;
+  background: #bae1f7;
 }
 
 #map-container svg path {
