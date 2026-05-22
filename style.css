@@ -62,30 +62,37 @@ body {
 
 #map-container {
 
-  position: relative;
-
-  height: 760px;
-
-  overflow: hidden;
-
-  background: #b7dce8;
-
-  border-radius: 0 0 18px 18px;
-}
-
-#map-container svg {
-
   position: absolute;
 
-  top: 50%;
+  top: 110px;
 
   left: 50%;
 
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
 
-  width: 1080px;
+  width: 78%;
 
-  height: auto;
+  height: 74%;
+
+  background: #b7dce8;
+
+  border-radius: 14px;
+
+  overflow: hidden;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+}
+#svgMap {
+
+  width: 118%;
+
+  height: 118%;
+
+  object-fit: contain;
 }
 #floating-label {
 
