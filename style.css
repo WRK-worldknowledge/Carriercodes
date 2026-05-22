@@ -29,11 +29,11 @@ color: white;
 font-size: 24px; 
 font-weight: bold; 
 } 
-#map-container { 
-position: absolute; 
-top: 110px; 
-left: 50%; 
-transform: translateX(-50%); 
+#map-container {
+
+position: relative;
+
+margin: 0 auto;
 width: 78%; 
 height: 74%; 
 background: #b7dce8; 
