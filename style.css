@@ -1,34 +1,52 @@
 body { 
-margin: 0; 
-background: white; 
-font-family: Arial, sans-serif; 
+margin:0;
+  font-family:Arial, Helvetica, sans-serif;
+  background:linear-gradient(145deg,#0F172A,#111E3A);
+  color:white;
 display: flex; 
 justify-content: center; 
 padding-top: 40px; 
 } 
 #game-container { 
 width: 1100px; } 
+
 #topbar { 
 height: 70px; 
-background: #6c82b8; 
-border-radius: 18px 18px 0 0; 
+#topbar{
+
+  background:rgba(255,255,255,0.06);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter:blur(10px);
+
+  border-radius:18px 18px 0 0;
+}
 display: flex; 
 align-items: center; 
 justify-content: space-between; 
 padding: 0 25px; 
 box-sizing: border-box; 
 } 
-#score { 
-background: white; 
+#score{
+
+  background:#F5CA51;
+
+  color:#0F172A;
+
+  font-weight:700;
+
+  box-shadow:0 8px 20px rgba(0,0,0,0.3);
+}
 padding: 10px 18px; 
 border-radius: 12px; 
 font-size: 28px; 
-font-weight: bold; 
+
 } 
 #remaining { 
-color: white; 
+color: #F5CA51; 
 font-size: 24px; 
-font-weight: bold; 
+font-weight:700; 
 } 
 #map-container {
 
@@ -48,9 +66,9 @@ font-weight: bold;
 
   background: white;
 
-  border-radius: 18px;
+  border-radius: 22px;
 
-  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.35);
 
   overflow: hidden;
 
@@ -73,12 +91,16 @@ object-fit: contain;
 #floating-label { 
 position: absolute; 
 left: 40px; top: 140px; 
-background: white; 
+background:#F5CA51;
+
+  color:#0F172A;
+ 
 padding: 10px 16px; 
 border-radius: 14px; 
 font-size: 24px; 
-font-weight: bold; 
+font-weight: 700; 
 box-shadow: 0 3px 10px rgba(0,0,0,0.25); 
+  border:none;
 z-index: 999; pointer-events: none; 
 } 
 #svgMap path { 
